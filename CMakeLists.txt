@@ -1,49 +1,45 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.16.3 FATAL_ERROR)
+project(GNN_map_colorizer)
 
-project(time_pub_sub_pkg)  #<--- TODO: change this to your own package name
- 
-## Compile as C++11, supported in ROS Noetic and newer
-add_compile_options(-std=c++11)
+add_compile_options(-std=c++17)
 
-find_package(catkin REQUIRED COMPONENTS  #<--- TODO: Add your required packages here
+# It's good practice to explicitly set these variables
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_BUILD_TYPE Release)
+
+message(STATUS "Before finding packages")
+find_package(catkin REQUIRED COMPONENTS
   roscpp
-  rospy
+  tf
   std_msgs
+  fs_msgs
+  rospack
+  roslib
 )
+message(STATUS "After finding packages")
+
+set(Torch_DIR "/ws/pytorch/torch/share/cmake/Torch")
+find_package(Torch REQUIRED)
+
 
 catkin_package(
-   INCLUDE_DIRS include
-   CATKIN_DEPENDS roscpp rospy std_msgs  #TODO: Add your required packages here
+  INCLUDE_DIRS include
+  CATKIN_DEPENDS roscpp tf std_msgs fs_msgs rospack
 )
-
 
 include_directories(
   include
-  ${catkin_INCLUDE_DIRS} 
+  ${catkin_INCLUDE_DIRS}
+)
+
+add_executable(gnn_map_colorizer src/main.cpp)
+
+target_link_libraries(gnn_map_colorizer
+  ${catkin_LIBRARIES}
+  ${TORCH_LIBRARIES}
 )
 
 
-add_executable(example_time_publisher src/example_time_publisher.cpp) #TODO: change the name of the executable to your own executable name
-
-target_link_libraries(example_time_publisher ${catkin_LIBRARIES}) #TODO: change the name of the executable to your own executable name
-
-
-install(PROGRAMS
-  scripts/example_time_subscriber.py #TODO: change the name of the executable to your own executable name
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-
-install(TARGETS example_time_publisher #TODO: change the name of the executable to your own executable name
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-install(DIRECTORY
-  launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
-
-install(DIRECTORY
-  include/${PROJECT_NAME}/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-)
