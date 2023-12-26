@@ -1,7 +1,7 @@
 
-# Config for the rgnn_colorizer node
+# Config for the gnn_map_colorizer node
 
-GNN_map_colorizer:
+gnn_map_colorizer:
   model_path: "weights/gnn_pi4_2.pt"
   propagation_distance: 2.0
   max_prop_angle: 0.7854

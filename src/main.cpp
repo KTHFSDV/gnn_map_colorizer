@@ -11,7 +11,7 @@
 #include "ros_interface.hpp"
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "rgnn_colorizer");
+    ros::init(argc, argv, "gnn_map_colorizer");
     ROS_GNNColorizer colorizer;
     ros::spin();
     return 0;

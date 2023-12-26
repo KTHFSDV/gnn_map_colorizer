@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16.3 FATAL_ERROR)
-project(GNN_map_colorizer)
+project(gnn_map_colorizer)
 
 add_compile_options(-std=c++17)
 

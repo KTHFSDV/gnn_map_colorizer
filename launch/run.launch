@@ -1,6 +1,6 @@
 <launch>
-    <rosparam file="$(find GNN_map_colorizer)/config/config.yaml" command="load" />
-    <node name="gnn_map_colorizer" type="gnn_map_colorizer" pkg="GNN_map_colorizer" output="screen">
+    <rosparam file="$(find gnn_map_colorizer)/config/config.yaml" command="load" />
+    <node name="gnn_map_colorizer" type="gnn_map_colorizer" pkg="gnn_map_colorizer" output="screen">
         <remap from="~input_map" to="/slam/output/mapped_cones" />
         <remap from="~input_odom" to="/slam/output/odom" />
         <remap from="~output_map" to="/navigation/colorizer/mapped_cones" />

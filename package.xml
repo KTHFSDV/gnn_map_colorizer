@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>GNN_map_colorizer</name>
+  <name>gnn_map_colorizer</name>
   <version>0.0.0</version>
-  <description>The GNN_map_colorizer package</description>
+  <description>The gnn_map_colorizer package</description>
 
   <author email="test@kthformulastudent.com">test</author>
   <maintainer email="test@kthformulastudent.com">test</maintainer>
