@@ -22,13 +22,13 @@ class ROS_GNNColorizer {
 
 public:
     ROS_GNNColorizer() : nh_("~") {
-        nh_.getParam("/rgnn_colorizer/model_path", model_path_);
-        nh_.getParam("/rgnn_colorizer/propagation_distance", propagation_distance_);
-        nh_.getParam("/rgnn_colorizer/max_prop_angle", max_prop_angle_);
-        nh_.getParam("/rgnn_colorizer/max_input_range", max_input_range_);
-        nh_.getParam("/rgnn_colorizer/max_track_width", max_track_width_);
-        nh_.getParam("/rgnn_colorizer/association_threshold", association_threshold_);
-        nh_.getParam("/rgnn_colorizer/max_steps", max_steps_);
+        nh_.getParam("/GNN_map_colorizer/model_path", model_path_);
+        nh_.getParam("/GNN_map_colorizer/propagation_distance", propagation_distance_);
+        nh_.getParam("/GNN_map_colorizer/max_prop_angle", max_prop_angle_);
+        nh_.getParam("/GNN_map_colorizer/max_input_range", max_input_range_);
+        nh_.getParam("/GNN_map_colorizer/max_track_width", max_track_width_);
+        nh_.getParam("/GNN_map_colorizer/association_threshold", association_threshold_);
+        nh_.getParam("/GNN_map_colorizer/max_steps", max_steps_);
 
         sub_cones_ = nh_.subscribe("input_map", 1, &ROS_GNNColorizer::cones_callback, this);
         sub_odom_ = nh_.subscribe("input_odom", 1, &ROS_GNNColorizer::odom_callback, this);
